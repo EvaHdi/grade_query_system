@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>成绩查询系统</title>
+</head>
+<body>
+    <h1>成绩查询</h1>
+
+    <form method="get">
+        <label for="student_id">请输入学号：</label>
+        <input type="text" id="student_id" name="student_id" value="{{ student_id }}">
+        <button type="submit">查询</button>
+    </form>
+
+    {% if student %}
+        <h2>学生信息</h2>
+        <p>姓名：{{ student.name }}</p>
+        <p>学号：{{ student.student_id }}</p>
+
+        <h2>成绩信息</h2>
+        <ul>
+            {% for grade in grades %}
+                <li>{{ grade.subject }}: {{ grade.score }}</li>
+            {% endfor %}
+        </ul>
+    {% elif student_id %}
+        <p style="color:red;">未找到学号为 {{ student_id }} 的学生。</p>
+    {% endif %}
+</body>
+</html>
